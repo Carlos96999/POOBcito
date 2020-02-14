@@ -16,9 +16,12 @@ public class Checkers
     //private Rectangle[][] tableroConfig;
     private Tablero tablero;
     private Tablero tableroConfig;    
-    private HashMap<String, int[]> posiciones; 
-    private ArrayList<Circle> fichasNegras = new ArrayList<Circle>();
-    private ArrayList<Circle> fichasBlancas = new ArrayList<Circle>();
+    private HashMap<String, int[]> posiciones;
+    private HashMap<String, ArrayList<Ficha>> fichas;
+    //private ArrayList<Circle> fichasNegras = new ArrayList<Circle>();
+    //private ArrayList<Circle> fichasBlancas = new ArrayList<Circle>();
+    private ArrayList<Ficha> fichasNegras = new ArrayList<Ficha>();
+    private ArrayList<Ficha> fichasBlancas = new ArrayList<Ficha>();
     private ArrayList<Triangle> reyBlancas = new ArrayList<Triangle>();
     private ArrayList<Triangle> reyNegras = new ArrayList<Triangle>();
     private ArrayList<Circle> fichasNegrasConfig = new ArrayList<Circle>();
@@ -37,9 +40,12 @@ public class Checkers
     public Checkers(int width)
     {
         this.width = width;
-        tablero = new Tablero(width);
-        tableroConfig = new Tablero(width);
+        tablero = new Tablero(width, false);
+        tableroConfig = new Tablero(width, true);
         posiciones = new HashMap<String, int[]>();
+        fichas = new HashMap<String, ArrayList<Ficha>>();
+        fichas.put("yellow", fichasNegras);
+        fichas.put("white", fichasBlancas);
         hashMap();
         //tablero = new Rectangle[width][width];
         //tableroConfig = new Rectangle[width][width];
@@ -56,21 +62,17 @@ public class Checkers
      * Hacer visibles los objetos
      */
     public void makeVisible(){
-        /*for(int i=0; i<width; i++){
-            for(int j=0; j<width; j++){
-                tablero[i][j].makeVisible();
-                tableroConfig[i][j].makeVisible();}}*/
         tablero.makeVisible();
         tableroConfig.makeVisible();
         
-        for(int i=0; i<fichasNegras.size(); i++){
-            fichasNegras.get(i).makeVisible();}
-        for(int i=0; i<fichasBlancas.size(); i++){
-            fichasBlancas.get(i).makeVisible();}
-        for(int i=0; i<reyBlancas.size(); i++){
-            reyBlancas.get(i).makeVisible();}
-        for(int i=0; i<reyNegras.size(); i++){
-            reyNegras.get(i).makeVisible();}
+        //for(int i=0; i<fichasNegras.size(); i++){
+            //fichasNegras.get(i).makeVisible();}
+        //for(int i=0; i<fichasBlancas.size(); i++){
+            //fichasBlancas.get(i).makeVisible();}
+        //for(int i=0; i<reyBlancas.size(); i++){
+            //reyBlancas.get(i).makeVisible();}
+        //for(int i=0; i<reyNegras.size(); i++){
+            //reyNegras.get(i).makeVisible();}
         for(int i=0; i<fichasNegrasConfig.size(); i++){
             fichasNegrasConfig.get(i).makeVisible();}
         for(int i=0; i<fichasBlancasConfig.size(); i++){
@@ -79,7 +81,8 @@ public class Checkers
             reyBlancasConfig.get(i).makeVisible();}
         for(int i=0; i<reyNegrasConfig.size(); i++){
             reyNegrasConfig.get(i).makeVisible();}
-        ok = true;}
+        ok = true;
+    }
     
     /**
      * Hacer invisible los objetos
@@ -94,10 +97,10 @@ public class Checkers
         tablero.makeInvisible();
         tableroConfig.makeInvisible();
         
-        for(int i=0; i<fichasNegras.size(); i++){
-            fichasNegras.get(i).makeInvisible();}
-        for(int i=0; i<fichasBlancas.size(); i++){
-            fichasBlancas.get(i).makeInvisible();}
+        //for(int i=0; i<fichasNegras.size(); i++){
+            //fichasNegras.get(i).makeInvisible();}
+        //for(int i=0; i<fichasBlancas.size(); i++){
+            //fichasBlancas.get(i).makeInvisible();}
         for(int i=0; i<reyBlancas.size(); i++){
             reyBlancas.get(i).makeInvisible();}
         for(int i=0; i<reyNegras.size(); i++){
@@ -122,12 +125,12 @@ public class Checkers
     {       
         if (row < this.width && column < this.width){        
             for(int i=0; i<fichasNegras.size(); i++){
-                int[] posicion = fichasNegras.get(i).getPosicionTablero();
-                if(posicion[0] == row-1 && posicion[1] == column-1)                {
-                    fichasNegras.get(i).changeColor("green");
-                    posFichaTomada = i;
-                    fichaTomada = fichasNegras.get(i);
-                }
+                //int[] posicion = fichasNegras.get(i).getPosicionTablero();
+                //if(posicion[0] == row-1 && posicion[1] == column-1)                {
+                    //fichasNegras.get(i).changeColor("green");
+                    //posFichaTomada = i;
+                    //fichaTomada = fichasNegras.get(i);
+                //}
             }
             if (fichaTomada == null){ok=false;}
         }else{ok=false;}
@@ -153,6 +156,7 @@ public class Checkers
         fichaTomada.setPosicionTablero(pos[0]+posX, pos[1]+posY);
         tablero.setOcupado(true, pos[0]+posX, pos[1]+posY);
         tablero.setOcupado(false,pos[0], pos[1]);
+        /*
         if(notation == "di"){          
             if(puedeMoverse(notation) == true){
                 //posXCasillaIni = tablero[pos[0]+1][pos[1]+1].getPosicionX();
@@ -162,8 +166,10 @@ public class Checkers
                 //fichaTomada.setPosicionX(posXCasillaIni+3);
                 //fichaTomada.setPosicionY(posYCasillaIni+3);
                 //fichaTomada.setPosicionTablero(pos[0]+1, pos[1]+1);
-                tablero[pos[0]+1][pos[1]+1].setOcupado(true);
-                tablero[pos[0]][pos[1]].setOcupado(false);}}
+                //tablero[pos[0]+1][pos[1]+1].setOcupado(true);
+                //tablero[pos[0]][pos[1]].setOcupado(false);
+            }
+            }
         else if(notation == "ds"){
             if(puedeMoverse(notation) == true){
                 posXCasillaIni = tablero[pos[0]-1][pos[1]+1].getPosicionX();
@@ -195,7 +201,7 @@ public class Checkers
                 tablero[pos[0]][pos[1]].setOcupado(false);}}
         else{ok = false;
              JOptionPane.showMessageDialog(null,"No se puede realizar la operación", 
-             "Movimiento erróneo", JOptionPane.WARNING_MESSAGE);}
+             "Movimiento erróneo", JOptionPane.WARNING_MESSAGE);}*/
     }
     
     /**
@@ -218,24 +224,38 @@ public class Checkers
      *              y los datos dentro de cada subarreglo indican la posición)
      */
     public void add(boolean white, int[][] men){
-        int posX;
-        int posY;        
+        //int posX;
+        //int posY;
+        //ArrayList<Ficha>ficha = new ArrayList<Ficha>();
         if(white){
             for(int i=0; i<men.length; i++){
-                posX = tableroConfig[men[i][0]-1][men[i][1]-1].getPosicionX()+3;
-                posY = tableroConfig[men[i][0]-1][men[i][1]-1].getPosicionY()+3;
-                fichasBlancasConfig.add(new Circle(posX, posY, "yellow"));
-                fichasBlancasConfig.get(contadorBlanco).setPosicionTablero(men[i][0]-1, men[i][1]-1);
-                contadorBlanco += 1;}
+                crearFicha("yellow", men[i][0]-1, men[i][1]-1, false);
+            }
+            /*for(int i=0; i<men.length; i++){
+                //posX = tableroConfig[men[i][0]-1][men[i][1]-1].getPosicionX()+3;
+                //posY = tableroConfig[men[i][0]-1][men[i][1]-1].getPosicionY()+3;
+                posX = tableroConfig.getPosCasilla(men[i][0]-1, men[i][1]-1, 1)+3;
+                posY = tableroConfig.getPosCasilla(men[i][0]-1, men[i][1]-1, 0)+3;
+                //fichasBlancasConfig.add(new Circle(posX, posY, "yellow"));
+                //fichasBlancasConfig.get(contadorBlanco).setPosicionTablero(men[i][0]-1, men[i][1]-1);
+                ficha = fichas.get("Amarillo");
+                ficha.add(new Ficha(posX, posY, "yellow"));
+                ficha.get(ficha.size()-1).setPosicionTablero(men[i][0]-1, men[i][1]-1);}*/
+            //contadorBlanco += 1;}
         }
         else{
             for(int i=0; i<men.length; i++){
+                crearFicha("white", men[i][0]-1, men[i][1]-1, false);
+            }
+            /*for(int i=0; i<men.length; i++){
                 //System.out.println("Longitud de men "+i);
-                posX = tableroConfig[men[i][0]][men[i][1]].getPosicionX()+3;
-                posY = tableroConfig[men[i][0]][men[i][1]].getPosicionY()+3;
+                //posX = tableroConfig[men[i][0]][men[i][1]].getPosicionX()+3;
+                //posY = tableroConfig[men[i][0]][men[i][1]].getPosicionY()+3;
+                posX = tableroConfig.getPosCasilla(men[i][0]-1, men[i][1]-1, 1)+3;
+                posY = tableroConfig.getPosCasilla(men[i][0]-1, men[i][1]-1, 0)+3;
                 fichasNegrasConfig.add(new Circle(posX, posY, "white")); 
                 fichasNegrasConfig.get(contadorNegro).setPosicionTablero(men[i][0]-1, men[i][1]-1);
-                contadorNegro += 1;}}    
+                contadorNegro += 1;}*/}    
     }
     
     /**
@@ -251,14 +271,20 @@ public class Checkers
         int posicion = reyBlancas.size()-1;
         
         if(king){
-            posX = tableroConfig[row-1][column-1].getPosicionX()+19;
-            posY = tableroConfig[row-1][column-1].getPosicionY()+3;
+            crearFicha("white", row, column, false);
+            //posX = tableroConfig[row-1][column-1].getPosicionX()+19;
+            //posY = tableroConfig[row-1][column-1].getPosicionY()+3;
+            posX = tableroConfig.getPosCasilla(row-1, column-1, 1)+3;
+            posY = tableroConfig.getPosCasilla(row-1, column-1, 0)+3;
             reyBlancasConfig.add(new Triangle(posX, posY, "yellow"));
             posicion += 1;
             reyBlancasConfig.get(posicion).setPosicionTablero(posX, posY);}
         else{
-            posX = tableroConfig[row-1][column-1].getPosicionX()+19;
-            posY = tableroConfig[row-1][column-1].getPosicionY()+3;
+            crearFicha("white", row, column, false);
+            //posX = tableroConfig[row-1][column-1].getPosicionX()+19;
+            //posY = tableroConfig[row-1][column-1].getPosicionY()+3;
+            posX = tableroConfig.getPosCasilla(row-1, column-1, 1)+3;
+            posY = tableroConfig.getPosCasilla(row-1, column-1, 0)+3;
             reyNegrasConfig.add(new Triangle(posX, posY, "white"));
             posicion += 1;
             reyNegrasConfig.get(posicion).setPosicionTablero(posX, posY);}
@@ -308,17 +334,49 @@ public class Checkers
     }
     
     /*
+     * Creamos las fichas según las especificaciones
+     * @param color (Color de la ficha a crear)
+     * @param cantidad (Cantidad de fichas a crear)
+     * @param tipo (True si es rey, false si es peón)
+     */
+    private void crearFicha(String color, int fila, int columna, boolean tipo){
+        int posX;
+        int posY;
+        ArrayList<Ficha>ficha = new ArrayList<Ficha>();
+        posX = tableroConfig.getPosCasilla(fila, columna, 1)+3;
+        posY = tableroConfig.getPosCasilla(fila, columna, 0)+3;
+        ficha = fichas.get(color);
+        ficha.add(new Ficha(posX, posY, color));
+        ficha.get(ficha.size()-1).setPosicionTablero(fila, columna);
+        //for(int i=0; i<cantidad; i++){
+            //posX = tableroConfig[men[i][0]-1][men[i][1]-1].getPosicionX()+3;
+            //posY = tableroConfig[men[i][0]-1][men[i][1]-1].getPosicionY()+3;
+            //posX = tableroConfig.getPosCasilla(matrizF[i][0]-1, matrizF[i][1]-1, 1)+3;
+            //posY = tableroConfig.getPosCasilla(matrizF[i][0]-1, matrizF[i][1]-1, 0)+3;
+            //fichasBlancasConfig.add(new Circle(posX, posY, "yellow"));
+            //fichasBlancasConfig.get(contadorBlanco).setPosicionTablero(men[i][0]-1, men[i][1]-1);
+            //ficha = fichas.get(color);
+            //ficha.add(new Ficha(posX, posY, color));
+            //ficha.get(ficha.size()-1).setPosicionTablero(matrizF[i][0]-1, matrizF[i][1]-1);}
+    }
+    
+    /*
+     * Crear las fichas de tipo rey
+     */
+    /*
      * Verificamos que el movimiento sea valido
      */
     private boolean puedeMoverse(String direccion)
     {
         int[] pos = fichaTomada.getPosicionTablero();
         boolean valor = true;
-        if (tablero[pos[0]+1][pos[1]+1].getOcupado() && direccion == "di")
+        //if (tablero[pos[0]+1][pos[1]+1].getOcupado() && direccion == "di")
+        if(tablero.getOcupado(pos[0]+1, pos[1]+1) && direccion == "di")
         {
             valor = false;
         }
-        else if(tablero[pos[0]-1][pos[1]+1].getOcupado() && direccion == "ds")
+        //else if(tablero[pos[0]-1][pos[1]+1].getOcupado() && direccion == "ds")
+        else if(tablero.getOcupado(pos[0]-1, pos[1]+1) && direccion == "di")
         {
             valor = false;
         }
