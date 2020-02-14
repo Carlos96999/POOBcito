@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=Calmatfra
+comment1.params=
+comment1.target=Calmatfra()
+comment1.text=\r\n\ Constructor\r\n
+comment2.params=variable\ matriz
+comment2.target=void\ asigne(java.lang.String,\ int[][][])
+comment2.text=\r\n\ Asigna\ una\ matriz\ a\ una\ variable\ especificada\r\n\ @param\ variable\ nombre\ de\ la\ variable\r\n\ @param\ matriz\ \ \ \ matriz\ a\ asignar\r\n
+comment3.params=respuesta\ operando1\ operacion\ operando2
+comment3.target=void\ opere(java.lang.String,\ java.lang.String,\ char,\ java.lang.String)
+comment3.text=\r\n\ Realiza\ la\ operacion\ especificada\r\n\ @param\ respuesta\ variable\ a\ la\ que\ se\ le\ asigna\ el\ resultado\ de\ la\ operacion\r\n\ @param\ operando1\ un\ operando\ que\ se\ le\ realizara\ una\ operacion\r\n\ @param\ operacion\ operacion\ que\ se\ realizara\ entre\ operandos\r\n\ @param\ operando2\ operando\ con\ que\ se\ ejecutara\ la\ operacion\ al\ operando1\r\n
+comment4.params=variable
+comment4.target=java.lang.String\ consulta(java.lang.String)
+comment4.text=\r\n\ Consulta\ ??\r\n\ @param\ variable\ a\ consultar\r\n
+comment5.params=
+comment5.target=boolean\ ok()
+comment5.text=\r\n\ Retorna\ el\ estado\ de\ la\ ultima\ accion\ realizada\ \r\n
+numComments=6
