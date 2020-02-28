@@ -8,7 +8,7 @@ import java.awt.geom.*;
  * @version 1.0.  (15 July 2000) 
  */
 
-public class Circle{
+public class Circle extends Ficha{
 
     public static double PI=3.1416;
     
@@ -206,6 +206,22 @@ public class Circle{
         erase();
         yPosition = y;
         draw();
+    }
+    
+    /**
+     * Obtener la posición X de la figura
+     */
+    public int getPosicionX()
+    {
+        return xPosition;
+    }
+    
+    /**
+     * Obtener la posicion Y de la figura
+     */
+    public int getPosicionY()
+    {
+        return yPosition;
     }
     
     /*

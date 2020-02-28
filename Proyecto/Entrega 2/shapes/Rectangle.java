@@ -15,7 +15,8 @@ public class Rectangle{
     private int height;
     private int width;
     private int xPosition;
-    private int yPosition;
+    private int yPosition;    
+    private int casilla;
     private String color;
     private boolean isVisible;
     private boolean ocupado;
@@ -28,6 +29,7 @@ public class Rectangle{
         width = 40;
         xPosition = 70;
         yPosition = 15;
+        casilla = 0;
         color = "magenta";
         isVisible = false;
         ocupado = false;
@@ -241,6 +243,22 @@ public class Rectangle{
     public boolean getOcupado()
     {
         return ocupado;
+    }
+    
+    /**
+     * Asignar el número de la casilla
+     * @param numero (Número de la casilla correspondiente)
+     */
+    public void setNumeroCasilla(int numero){
+        casilla = numero;
+    }
+    
+    /**
+     * Obtener el numero de la casilla
+     * @return casilla (Número de posición correspondiente)
+     */
+    public int getNumeroCasilla(){
+        return casilla;
     }
     
     /*

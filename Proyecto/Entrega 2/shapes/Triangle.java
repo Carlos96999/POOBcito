@@ -7,7 +7,7 @@ import java.awt.*;
  * @version 1.0  (15 July 2000)
  */
 
-public class Triangle{
+public class Triangle extends Ficha{
     private int height;
     private int width;
     private int xPosition;
@@ -185,6 +185,44 @@ public class Triangle{
     {
         int[] valor = {i,j};
         return valor;
+    }
+    
+    /**
+     * Asignar la nueva posición en x
+     * @param x (La nueva posición en x)
+     */
+    public void setPosicionX(int x)
+    {
+        erase();
+        xPosition = x;
+        draw();
+    }
+    
+    /**
+     * Asignar la nueva posición en y
+     * @param y (La nueva posición en y)
+     */
+    public void setPosicionY(int y)
+    {
+        erase();
+        yPosition = y;
+        draw();
+    }
+    
+    /**
+     * Obtener la posición X de la figura
+     */
+    public int getPosicionX()
+    {
+        return xPosition;
+    }
+    
+    /**
+     * Obtener la posicion Y de la figura
+     */
+    public int getPosicionY()
+    {
+        return yPosition;
     }
     
 	/*
