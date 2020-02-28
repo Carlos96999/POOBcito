@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
@@ -141,8 +142,9 @@ public class Checkers
         }else{ok=false;}
     }
     
-    /**
+    /*
      * Mover las fichas del tablero
+     * @param notation (Cadena que describe el movimiento que tendrá la ficha)
      */
     public void move(String notation)
     {
@@ -230,12 +232,23 @@ public class Checkers
              "Movimiento erróneo", JOptionPane.WARNING_MESSAGE);}*/
     }
     
-    /**
+    
+    /*
      * Realizar el mejor movimiento posible para la ficha
-     */
+     *
     public void move(){
         
-    }
+    }*/
+    
+    
+    
+    /*
+     * Imprimir la representación dle tablero en forma de string
+     * @return tablero (Devolver el tablero en forma de string como se visualiza en el problema de la maratón)
+     *
+    public String move(){
+        return "";
+    }*/
     
     /**
      * Consultar el numero de fichas en cada tablero
@@ -512,12 +525,14 @@ public class Checkers
         
         if(!tipo){
             //System.out.println("Entro");
-            ficha.add(new Circle(posX, posY, color));
+            //ficha.add(new Circle(posX, posY, color));
+            ficha.add(new Peon(posX, posY, color));
             ficha.get(ficha.size()-1).setPosicionTablero(fila, columna);
         }
         else{
             //System.out.println("Entro 2");
-            ficha.add(new Triangle(posX, posY, color));
+            //ficha.add(new Triangle(posX, posY, color));
+            ficha.add(new Rey(posX, posY, color));
             ficha.get(ficha.size()-1).setPosicionTablero(fila, columna);
         }
         tableroConfig.setOcupado(true, fila, columna);

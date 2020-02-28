@@ -8,7 +8,7 @@ import java.awt.geom.*;
  * @version 1.0.  (15 July 2000) 
  */
 
-public class Circle extends Ficha{
+public class Circle{
 
     public static double PI=3.1416;
     
