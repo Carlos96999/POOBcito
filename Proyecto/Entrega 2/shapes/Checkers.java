@@ -13,6 +13,7 @@ public class Checkers
 {
     private int width;
     private int posFichaTomada;
+    private int pepe;
     //private Rectangle[][] tablero;
     //private Rectangle[][] tableroConfig;
     private Tablero tablero;
