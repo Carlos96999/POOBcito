@@ -139,6 +139,8 @@ public class Checkers
                     fichaTomada = fichas.get("white").get(i);
                 }
             }
+            ok=true;
+            
             if (fichaTomada == null){ok=false;}
         }else{ok=false;}
     }
@@ -274,7 +276,7 @@ public class Checkers
         //int posX;
         //int posY;
         //ArrayList<Ficha>ficha = new ArrayList<Ficha>();
-        if(white){
+               if(white){
             for(int i=0; i<men.length; i++){
                 crearFicha("yellow", men[i][0]-1, men[i][1]-1, false);
             }
@@ -316,7 +318,6 @@ public class Checkers
         int posX;
         int posY;
         //int posicion = reyBlancas.size()-1;
-        
         if(king){
             crearFicha("yellow", row-1, column-1, true);
             //posX = tableroConfig[row-1][column-1].getPosicionX()+19;
@@ -337,7 +338,8 @@ public class Checkers
             //posicion += 1;
             //reyNegrasConfig.get(posicion).setPosicionTablero(posX, posY);
         }
-    }
+  
+}
     
     /**
      * Remover una ficha del tablero
@@ -523,8 +525,13 @@ public class Checkers
         posX = tableroConfig.getPosCasilla(fila, columna, 1)+3;
         posY = tableroConfig.getPosCasilla(fila, columna, 0)+3;
         ficha = fichas.get(color);
+        if (tableroConfig.getOcupado(fila,columna)){
+            JOptionPane.showMessageDialog(null,"La casilla está ocupada");
         
-        if(!tipo){
+            ok=false;
+        }
+        else{
+            if(!tipo){
             //System.out.println("Entro");
             //ficha.add(new Circle(posX, posY, color));
             ficha.add(new Peon(posX, posY, color));
@@ -537,6 +544,7 @@ public class Checkers
             ficha.get(ficha.size()-1).setPosicionTablero(fila, columna);
         }
         tableroConfig.setOcupado(true, fila, columna);
+        ok=true;
         //ficha.get(ficha.size()-1).setPosicionTablero(fila, columna);
         //for(int i=0; i<cantidad; i++){
             //posX = tableroConfig[men[i][0]-1][men[i][1]-1].getPosicionX()+3;
@@ -549,6 +557,7 @@ public class Checkers
             //ficha.add(new Ficha(posX, posY, color));
             //ficha.get(ficha.size()-1).setPosicionTablero(matrizF[i][0]-1, matrizF[i][1]-1);}
     }
+}
     
     /*
      * Crear las fichas de tipo rey
@@ -566,7 +575,7 @@ public class Checkers
             valor = false;
         }
         //else if(tablero[pos[0]-1][pos[1]+1].getOcupado() && direccion == "ds")
-        else if(tablero.getOcupado(pos[0]-1, pos[1]+1) && direccion == "di")
+        else if(tablero.getOcupado(pos[0]-1, pos[1]+1) && direccion == "ds")
         {
             valor = false;
         }
