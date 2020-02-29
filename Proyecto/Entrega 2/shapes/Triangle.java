@@ -35,7 +35,7 @@ public class Triangle {
     public Triangle(int x, int y, String color){
 		height = 30;
 		width = 40;
-		xPosition = x;
+		xPosition = x+17;
 		yPosition = y;
 		this.color = color;
 		isVisible = false;

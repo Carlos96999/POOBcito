@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
  * Write a description of class Checkers here.
  *
  * @author Carlos Amorocho && Jairo Pulido
- * @version (06/02/2020)
+ * @version (28/02/2020)
  */
 public class Checkers
 {
@@ -255,8 +255,8 @@ public class Checkers
      * Consultar el numero de fichas en cada tablero
      * @return [numerofichastablero,numerofichastableroconfiguracion,numerofichastotal]
      */
-    public int consult(){
-        int piecesTablero = fichas.get("white").size() + fichas.get("yellow").size();
+    public int[] consult(){
+        int []piecesTablero = {fichas.get("white").size(),fichas.get("yellow").size(),fichas.get("white").size() + fichas.get("yellow").size()};
         //int piecesTablero = fichasNegras.size() + fichasBlancas.size() + reyBlancas.size() + reyNegras.size();
         //int piecesTableroConfig = fichasNegrasConfig.size() + fichasBlancasConfig.size() + reyBlancasConfig.size() + reyNegrasConfig.size();
         //int piecesTotal = piecesTablero + piecesTableroConfig;               
