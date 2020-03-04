@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  * Write a description of class Rey here.
@@ -21,7 +22,33 @@ public class Rey extends Ficha
      * Mover las fichas del tablero
      * @param notation (Cadena que describe el movimiento que tendrá la ficha)
      */
-    public void move(String notation){}
+    public void move(ArrayList<Integer> posiciones, ArrayList<Rectangle> casillas){
+        //int[] pos; int indice = 0; int guia = 1; 
+        int posXCasilla, posYCasilla; 
+        //ArrayList<Integer> posiciones = leerCadena(notation);
+        //ArrayList<Rectangle> casillas = tablero.obtenerCasilla(posiciones);
+        //posXCasilla = casillas.get(0).getPosicionX();
+        //posYCasilla = casillas.get(0).getPosicionY();        
+        /*
+        while(guia != 0){
+            int posX = fichas.get("white").get(indice).getPosicionX()-3;
+            int posY = fichas.get("white").get(indice).getPosicionY()-3;
+            if(posXCasilla == posX && posYCasilla == posY){
+                int[] i = fichas.get("white").get(indice).getPosicionTablero();
+                select(i[0], i[1]);
+                guia = 0;
+            }
+            indice += 1;
+        }
+        pos = fichaTomada.getPosicionTablero();*/
+        for(int i=1; i<posiciones.size(); i++){
+            posXCasilla = casillas.get(i).getPosicionX();
+            posYCasilla = casillas.get(i).getPosicionY();
+            setPosicionX(posXCasilla+3);
+            setPosicionY(posYCasilla+3);
+        }
+        //tablero.setOcupado(false,pos[0], pos[1]);
+    }
     
     /**
      * Realizar el mejor movimiento posible para la ficha

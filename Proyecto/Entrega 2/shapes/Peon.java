@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  * Write a description of class Peon here.
@@ -21,19 +22,32 @@ public class Peon extends Ficha
      * Mover las fichas del tablero
      * @param notation (Cadena que describe el movimiento que tendrá la ficha)
      */
-    public void move(String notation){}
+    public void move(ArrayList<Integer> posiciones, ArrayList<Rectangle> casillas){
+        int posXCasilla, posYCasilla;
+        
+        for(int i=1; i<posiciones.size(); i++){
+            posXCasilla = casillas.get(i).getPosicionX();
+            posYCasilla = casillas.get(i).getPosicionY();
+            setPosicionX(posXCasilla+3);
+            setPosicionY(posYCasilla+3);
+        }
+        casillas.get(0).setOcupado(false);
+        casillas.get(casillas.size()-1).setOcupado(true);
+    }
     
     /**
      * Realizar el mejor movimiento posible para la ficha
      */
-    public void move(){}
-    
+    public void move(){
+    }
+        
     /**
      * Imprimir la representación dle tablero en forma de string
      * @return tablero (Devolver el tablero en forma de string como se visualiza en el problema de la maratón)
      */
-    public String move3(){
-        return "";
+    public String move3(){    
+        String tablero = "(";
+        return tablero;
     }
     
     /**

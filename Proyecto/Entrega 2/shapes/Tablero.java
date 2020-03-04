@@ -129,6 +129,25 @@ public class Tablero
         return casillas;
     }
     
+    /**
+     * Saber si existen fichas alrededor de la seleccionada
+     * @param fila (Fila de la ficha seleccionada)
+     * @param columna (Columna de la ficha seleccionada)
+     * @return existe (Booleano que nos dice si existe o no)
+     */
+    private boolean existeFicha(){
+        boolean existe = false;
+        int[] indiceX = new int[] {1,-1};
+        int[] indiceY = new int[] {1,-1};
+        for(int i=0; i<2; i++){
+            for(int j=0; j<2; j++){
+                if(tablero[indiceX[i]][indiceY[j]].getOcupado()){}
+            }
+        }
+        
+        return existe;
+    }
+    
     /*
      * Crearemos el tablero de juego y configuración
      */
@@ -145,18 +164,12 @@ public class Tablero
                 tablero[i][j] = new Rectangle();                
                 tablero[i][j].moveHorizontal(fila);
                 tablero[i][j].moveVertical(columna);
-                //casilla = new Rectangle();
-                //casilla.moveHorizontal(fila);
-                //casilla.moveVertical(columna);
                 fila += 40;                
                 if(color == 0){
                     tablero[i][j].changeColor("red");
-                    //tablero.get("CR")[j] = casilla;
                     color = 1;}
                 else{
                     tablero[i][j].changeColor("black");
-                    //casilla.setNumeroCasilla(contador += 1);
-                    //tablero.get("CN")[j] = casilla;
                     color = 0;
                     tablero[i][j].setNumeroCasilla(contador += 1);                    
                 }                
