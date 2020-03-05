@@ -18,7 +18,7 @@ public abstract class Ficha
     /**
      * Realizar el mejor movimiento posible para la ficha
      */
-    public abstract void move();
+    public abstract void move(int posX, int posY);
     
     /**
      * Imprimir la representación dle tablero en forma de string

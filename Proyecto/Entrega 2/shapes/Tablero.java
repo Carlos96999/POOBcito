@@ -135,17 +135,48 @@ public class Tablero
      * @param columna (Columna de la ficha seleccionada)
      * @return existe (Booleano que nos dice si existe o no)
      */
-    private boolean existeFicha(){
-        boolean existe = false;
+    public ArrayList<Integer> existeFicha(int fila, int columna){
+        System.out.println("Fila "+fila);
+        System.out.println("Columna "+columna);
+        ArrayList<Integer> fichas = new ArrayList<Integer>();
         int[] indiceX = new int[] {1,-1};
         int[] indiceY = new int[] {1,-1};
         for(int i=0; i<2; i++){
             for(int j=0; j<2; j++){
-                if(tablero[indiceX[i]][indiceY[j]].getOcupado()){}
+                if((fila+indiceX[i] >= 0 && columna+indiceY[j] >= 0) && (fila+indiceX[i] < ancho && columna+indiceY[j] < ancho)){
+                    System.out.println("Entró 1");
+                    if(tablero[fila+indiceX[i]][columna+indiceY[j]].getOcupado()){
+                        System.out.println("Entró 2");
+                        fichas.add(i,j);
+                    }
+                }
             }
         }
-        
-        return existe;
+        return fichas;
+    }
+    
+    /**
+     * Buscar la casilla que contiene la ficha
+     * @param posX (Posición en x donde se encuentra)
+     * @param posY (Posición e y donde se encuentra)
+     */
+    public int[] buscarFicha(int posX, int posY){
+        int[] indices = new int[2];
+        int fin = 0; int i = 0;
+        while(fin == 0){
+            for(int j=0; j<ancho; j++){
+                int x = getPosCasilla(i, j, 1);
+                int y = getPosCasilla(i, j, 0);
+                if(x==posX && y==posY){
+                    indices[0] = i;
+                    indices[1] = j;
+                    fin = 1;
+                    break;
+                }
+            }
+            i += 1;
+        }
+        return indices;
     }
     
     /*

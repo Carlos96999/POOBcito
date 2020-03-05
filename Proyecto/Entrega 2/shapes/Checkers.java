@@ -136,8 +136,25 @@ public class Checkers
      * Realizar el mejor movimiento posible para la ficha
      */
     public void move(){
-        //if(tablero.existeFicha(fila, columna)){}
-        fichaTomada.move();        
+        ArrayList<Integer> hayFicha = tablero.existeFicha(fila-1, columna-1);
+        System.out.println("Dimension 'hayFicha' "+hayFicha.size());
+        int i = 0;
+        int j = 0;
+        while(hayFicha.size() > 0){
+            int fila = hayFicha.get(i)+hayFicha.get(i);
+            int columna = hayFicha.get(i+1)+hayFicha.get(i+1);
+            if(tablero.getOcupado(fila, columna)){
+                int posX = tablero.getPosCasilla(hayFicha.get(i), hayFicha.get(i+1), 1);
+                int posY = tablero.getPosCasilla(hayFicha.get(i), hayFicha.get(i+1), 0);
+                fichaTomada.move(fila, columna);
+                hayFicha = tablero.existeFicha(fila, columna);
+            }
+            else{
+                hayFicha.remove(0);
+                hayFicha.remove(0);
+            }
+        }
+               
     }
     
     
@@ -170,7 +187,7 @@ public class Checkers
      *              y los datos dentro de cada subarreglo indican la posición)
      */
     public void add(boolean white, int[][] men){
-               if(white){
+        if(white){
             for(int i=0; i<men.length; i++){
                 crearFicha("yellow", men[i][0]-1, men[i][1]-1, false);
             }
@@ -222,33 +239,32 @@ public class Checkers
      * Intercambiar los tableros de configuración y juego
      */
     public void swap(){
-        Ficha ficha;int posX;int posY;
+        Ficha ficha; int posX = 0;int posY = 0;
         int espacio = tableroConfig.getPosCasilla(0, 0, 1) - tablero.getPosCasilla(0, 0, 1);
-        //int[] pos;
-        int indicador = tablero.getPosCasilla(width-1, width-1, 1);        
-        
+        int indicador = tablero.getPosCasilla(width-1, width-1, 1);       
         for(int i=0; i<fichas.get("white").size(); i++)
         {            
             ficha = fichas.get("white").get(i);
             ficha.makeInvisible();
-            //pos = ficha.getPosicionTablero();          
             if(indicador < ficha.getPosicionX()){
                 posX = ficha.getPosicionX() - espacio;
                 posY = ficha.getPosicionY();
-                //posX = tablero.getPosCasilla(pos[0], pos[1], 1)+3;
-                //posY = tablero.getPosCasilla(pos[0], pos[1], 0)+3;
+                //tablero[pos[0]][pos[1]].setOcupado(true);
             }
             else
             {
                 posX = ficha.getPosicionX() + espacio;
                 posY = ficha.getPosicionY();
-                //posX = tableroConfig.getPosCasilla(pos[0], pos[1], 1)+3;
-                //posY = tableroConfig.getPosCasilla(pos[0], pos[1], 0)+3;
             }
             ficha.setPosicionX(posX);
             ficha.setPosicionY(posY);
             ficha.makeVisible();
-        }        
+            //tablero[pos[0]][pos[1]].setOcupado(true);
+            //tableroConfing[pos[0]][pos[1]].setOcupado(false);
+        }
+        int[] pos = tablero.buscarFicha(posX, posY);
+        //tablero[pos[0]][pos[1]].setOcupado(true);
+        //tableroConfing[pos[0]][pos[1]].setOcupado(false);
     }
     
     /**

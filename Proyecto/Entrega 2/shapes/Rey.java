@@ -52,8 +52,13 @@ public class Rey extends Ficha
     
     /**
      * Realizar el mejor movimiento posible para la ficha
+     * @param posX (Nueva posición x de la ficha al moverse)
+     * @param posY (Nueva posición y de la ficha al moverse)
      */
-    public void move(){}
+    public void move(int posX, int posY){
+        setPosicionX(posX);
+        setPosicionY(posY);
+    }
     
     /**
      * Imprimir la representación dle tablero en forma de string
